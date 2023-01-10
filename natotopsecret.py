@@ -15,17 +15,19 @@ def taskse():
     fil = open(stri, 'r')
     for line in fil:
         thong = requests.get("http://webcache.googleusercontent.com/search?q=cache:"+line, verify=False)
-        time.sleep(4)
+        time.sleep(1)
         if thong:
             buffer = open('buffer.txt', 'w')
             print(thong.text.strip(), file=buffer)
             buffed = open('buffer.txt', 'r')
             for liner in buffed:
-                theng = os.popen("grep "+rer+" buffer.txt")
-                if theng:
-                    print("http://webcache.googleusercontent.com/search?q=cache:"+liner)
-                else:
+                thung = os.popen("grep 404 buffer.txt")
+                if thung:
                     break
+                else:
+                    theng = os.popen("grep "+rer+" buffer.txt")
+                    if theng:
+                        print("http://webcache.googleusercontent.com/search?q=cache:"+liner)
                         
 
 if __name__ == '__main__':
