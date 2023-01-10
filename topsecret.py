@@ -77,7 +77,7 @@ def taskse():
             
                     else:
                         print("too many requests sent to web.archive.org, please wait 5 minutes")
-                        time.sleep(300)               
+                                    
     
 
 
