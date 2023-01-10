@@ -18,7 +18,7 @@ def taskse():
         time.sleep(4)
         if thong:
             buffer = open('buffer.txt', 'w')
-            print(thing.text.strip(), file=buffer)
+            print(thong.text.strip(), file=buffer)
             buffed = open('buffer.txt', 'r')
             for liner in buffed:
                 theng = os.popen("grep "+rer+" buffer.txt")
