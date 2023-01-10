@@ -22,7 +22,7 @@ def thumbs(lotty):
             if thump == 1:
                 thenn = os.popen("grep -e "+rer+" buffaged.txt")
                 if thenn != 1:
-                    print("http://webcache.googleusercontent.com/search?q=cache:"+liner)
+                    print("http://webcache.googleusercontent.com/search?q=cache:"+lined)
                 else:
                     continue
             else:
