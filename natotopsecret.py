@@ -9,51 +9,56 @@ urllib3.disable_warnings()
 print("usage python3 natotopsecret.py searchterm domain")
 rer = sys.argv[1]
 rawr = sys.argv[2]
+wude = open('outputnts.txt', 'w')
+from proxy_requests import proxyrequests
+
+#------------------------------------------------------------
 
 def thumbs(lotty):
-    thumb = request.get("http://webcache.googleusercontent.com/search?q=cache:"+lotty)
-    time.sleep(20)
+    thumb = proxyrequests.get("http://webcache.googleusercontent.com/search?q=cache:"+lotty)
     if thumb.ok:
         buffage = open('buffage.txt', 'w')
         print(thumb.text.strip(), file=buffage)
         buffaged = open('buffage.txt', 'r')
         for lined in buffaged:
-            thump = os.popen("grep -e 404 buffaged.txt")
-            if thump == 1:
-                thenn = os.popen("grep -e "+rer+" buffaged.txt")
-                if thenn != 1:
-                    print("http://webcache.googleusercontent.com/search?q=cache:"+lined)
-                else:
-                    continue
+            thump = os.popen("grep -e 404 buffaged.txt").read()
+            if thump:
+                print("saw 404", end='\r')
+                continue
             else:
+                thenn = os.popen("grep -e "+rer+" buffaged.txt").read()
+                if thenn:
+                    print("http://webcache.googleusercontent.com/search?q=cache:"+lined, file=wude)
+                else:
+                    print("did not find "+rer+" in cache", end='\r')
                     continue
     else:
-        printf("too many requests sent to Google, please wait 5 minutes")
-        time.sleep(300)
+        print("too many requests sent to Google, please wait 5 minutes", end='\r')
 
 def thongs(litty):
-    thong = requests.get("https://cc.bingj.com/cache.aspx?q="+litty, verify=False)
-    time.sleep(4)
+    thong = proxyrequests.get("https://cc.bingj.com/cache.aspx?q="+litty)
     if thong.ok:
         buffer = open('buffer.txt', 'w')
         print(thong.text.strip(), file=buffer)
         buffed = open('buffer.txt', 'r')
         for liner in buffed:
-            thung = os.popen("grep -e Apologies buffer.txt")
-            if thung == 1:
-                theng = os.popen("grep -e "+rer+" buffer.txt")
-                if theng != 1:
-                    print("https://cc.bingj.com/cache.aspx?q="+liner)
-                else:
-                    continue
-            else:
+            thung = os.popen("grep -e Apologies buffer.txt").read()
+            if thung:
+                print("saw apologies", end='\r')
                 continue
+            else:
+                theng = os.popen("grep -e "+rer+" buffer.txt").read() 
+                if theng:
+                    print("https://cc.bingj.com/cache.aspx?q="+liner, file=wude)
+                else:
+                    print("did not find cache", end='\r')
+                    continue
+            
     else:
-        print("too many requests sent to bing, please wait 5 minutes")
-        time.sleep(300)
+        print("too many requests sent to bing, please wait 5 minutes", end='\r')
         
 def taskse():
-    thing = requests.get("http://web.archive.org/cdx/search/cdx?url="+rawr+"&output=text&fl=original&collapse=urlkey&matchType=prefix", verify=False)
+    thing = proxyrequests.get("http://web.archive.org/cdx/search/cdx?url="+rawr+"&output=text&fl=original&collapse=urlkey&matchType=prefix")
     if thing.ok:
         stri = "stri.txt"
         fin = open(stri, 'w')
@@ -61,8 +66,8 @@ def taskse():
         fil = open(stri, 'r')
         for line in fil:
             try:
-                thread.start_new_thread(thumbs, (line))
-                thread.start_new_thread(thongs, (line))
+                thread.Thread(target=thumbs, args=(line,)).start()
+                thread.Thread(target=thongs, args=(line,)).start()
             except:
                 print("cannot start new thread")
             
