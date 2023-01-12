@@ -21,7 +21,7 @@ python3 natotopsecret.py searchterm domain
 
 !.1 second wait times between requests, 10 reqs a second per thread determined by your computers pool
 
-!Only saves items that contain the words you grep
+!Only saves URLS of items that contain the words you grep into a file called domain.output.txt
 
 !!!!!FEEL FREE TO EDIT AND CHANGE AS YOU'D LIKE!!!!!!
 
