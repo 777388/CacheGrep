@@ -157,9 +157,8 @@ def taskse():
         pool = Pool()
         try:
             for lineee in fil:
-                for i in range(len(fil.readlines())):
-                    pool.apply_async(thongs, args=(lineee,))
-                    pool.apply_async(thumbs, args=(lineee,))
+                pool.apply_async(thongs, args=(lineee,))
+                pool.apply_async(thumbs, args=(lineee,))
             pool.close()
             pool.join()
         except:
