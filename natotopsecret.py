@@ -14,7 +14,7 @@ from multiprocessing import Pool
 print("usage python3 natotopsecret.py searchterm domain")
 rer = sys.argv[1]
 rawr = sys.argv[2]
-wude = open('outputnts.txt', 'a')
+wude = open(rawr+'output.txt', 'a')
 proxx = subprocess.Popen('curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt > proxy.txt', stdout=subprocess.PIPE, shell=True).communicate()
 
 #------------------------------------------------------------
