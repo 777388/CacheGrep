@@ -127,7 +127,7 @@ def thongs(litty):
                 buffed = open('buffer.txt', 'r')
                 thung = subprocess.Popen("grep -e Apologies buffer.txt", stdout=subprocess.PIPE, shell=True).communicate()
                 if thung:
-                    print("\rsaw apologies", end='')
+                    print("\rsaw apologies, cache in "+litty.strip()+" not found", end='')
                     return 5
                 else:
                     theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, shell=True).communicate() 
