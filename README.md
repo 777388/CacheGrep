@@ -7,12 +7,19 @@ python3 topsecret.py searchterm
 DOMAIN NAME USAGE
 python3 natotopsecret.py searchterm domain
 
-May get limited by waybackurls if you use too often. Sleep timers are set to meet rate limit, so wait a minute before each attempt.
+!grabs a proxy list from https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
 
-to check if you're rate limited simply curl http://web.archive.org/cdx/search/cdx?url=1.1.1.1
+!Proxy hops every request
 
-***** MAKING ADJUSTMENTS *****
+!URLEncodes for google cache system
 
-JAN9th Switched over to bing
+!Hops through Bing
 
-PLANNED: Make a secondary timed rate limited Google thread
+!Automatically determines if theres a captcha page and avoids it hopping again
+
+!Determines if the items not found, kept in a few buffers
+
+!.1 second wait times between requests, 10 reqs a second per thread determined by your computers pool
+
+!!!!!FEEL FREE TO EDIT AND CHANGE AS YOU'D LIKE!!!!!!
+!!!!!!!!!!!!I DONT KNOW ABOUT LICENSING!!!!!!!!!!!!!!
