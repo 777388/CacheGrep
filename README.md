@@ -7,9 +7,12 @@ python3 topsecret.py searchterm
 (!!!FASTER!!!) python3 UMBRA.py searchterm outputfilename  (!!!!Be sure to set!!! ulimit -Sn unlimited)
 
 DOMAIN NAME USAGE
+
 python3 natotopsecret.py searchterm domain
 
-(!!!FASTER!!!!) python3 MAJESTIC.py searchterm domain (!!!!Be sure to set!!! ulimit -Sn unlimited)
+FILE UPLOAD USAGE
+
+(!!!FASTER!!!!) python3 MAJESTIC.py searchterm filename (!!!!Be sure to set!!! ulimit -Sn unlimited)
 
 !grabs a proxy list from https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
 
