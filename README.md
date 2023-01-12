@@ -14,6 +14,10 @@ FILE UPLOAD USAGE
 
 (!!!FASTER!!!!) python3 MAJESTIC.py searchterm filename (!!!!Be sure to set!!! ulimit -Sn unlimited)
 
+Google Bypass, Passive recon on site
+
+(!!!!FASTEST!!!!) python3 MYTHICAL.py searchterm Domain (!!!!Be sure to set!!! ulimit -Sn unlimited; and apply xs and c_name cookies from facebook)
+
 !grabs a proxy list from https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
 
 !Proxy hops every request
