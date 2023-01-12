@@ -156,13 +156,13 @@ def taskse():
     try:
         processes =[Process(target=thongs, args=(lineee,)) for lineee in fil]
         processess =[Process(target=thumbs, args=(lineee,)) for lineee in fil]
-        for process in processes:
-            process.start()
-        for processs in processess:
-            processs.start()
-        for process in processes:
-            process.join()
         for process in processess:
+            process.start()
+        for processs in processes:
+            processs.start()
+        for process in processess:
+            process.join()
+        for process in processes:
             process.join()
     except Exception as e:
         print("well, your computer thinks thats too many processes, try a smaller file")
