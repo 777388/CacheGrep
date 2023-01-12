@@ -67,7 +67,8 @@ def thumbs(lotty):
                         thenn = subprocess.Popen("grep -e "+rer+" buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
                         buffaged.close()
                         if thenn:
-                            print("http://webcache.googleusercontent.com/search?q=cache:"+lined.strip(), file=wude)
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty))
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty), file=wude)
                             return 6
                         else:
                             print("\rdid not find "+rer+" in cache", end='')
@@ -97,7 +98,8 @@ def thumbs(lotty):
                         thenn = subprocess.Popen("grep -e "+rer+" buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
                         buffaged.close()
                         if thenn:
-                            print("http://webcache.googleusercontent.com/search?q=cache:"+lined, file=wude)
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty))
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty), file=wude)
                             return 6
                         else:
                             print("\rdid not find "+rer+" in cache", end='')
@@ -131,8 +133,8 @@ def thongs(litty):
                 else:
                     theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, shell=True).communicate() 
                     if theng:
-                        print("https://cc.bingj.com/cache.aspx?q="+litty.strip()) 
-                        print("https://cc.bingj.com/cache.aspx?q="+litty.strip(), file=wude)
+                        print("https://cc.bingj.com/cache.aspx?q="+litty) 
+                        print("https://cc.bingj.com/cache.aspx?q="+litty, file=wude)
                         return 6
                     else:
                         print("\rdid not find cache", end='')
