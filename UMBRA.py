@@ -12,7 +12,7 @@ import os
 from itertools import islice
 from multiprocessing import Process
 from multiprocessing import Pool
-print("usage python3 UMBRA.py searchterm file")
+print("usage python3 UMBRA.py searchterm outputfile")
 rer = sys.argv[1]
 rawr = sys.argv[2]
 yup = str(rawr)
