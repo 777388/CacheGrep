@@ -21,6 +21,8 @@ python3 natotopsecret.py searchterm domain
 
 !.1 second wait times between requests, 10 reqs a second per thread determined by your computers pool
 
+!Only saves items that contain the words you grep
+
 !!!!!FEEL FREE TO EDIT AND CHANGE AS YOU'D LIKE!!!!!!
 
 !!!!!!!!!!!!I DONT KNOW ABOUT LICENSING!!!!!!!!!!!!!!
