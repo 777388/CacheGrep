@@ -9,7 +9,7 @@ python3 topsecret.py searchterm
 DOMAIN NAME USAGE
 python3 natotopsecret.py searchterm domain
 
-(!!!FASTER!!!!) python3 MAJESTIC.py searchterm domain
+(!!!FASTER!!!!) python3 MAJESTIC.py searchterm domain (!!!!Be sure to set!!! ulimit -Sn unlimited)
 
 !grabs a proxy list from https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
 
