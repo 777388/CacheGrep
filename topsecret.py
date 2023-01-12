@@ -13,7 +13,7 @@ from multiprocessing import Pool
 print("usage python3 natotopsecret.py searchterm")
 rer = sys.argv[1]
 
-wude = open('outputnts.txt', 'a')
+wude = open(rer+'output.txt', 'a')
 proxx = subprocess.Popen('curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt > proxy.txt', stdout=subprocess.PIPE, shell=True).communicate()
 
 #------------------------------------------------------------
