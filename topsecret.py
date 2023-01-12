@@ -66,7 +66,8 @@ def thumbs(lotty):
                         thenn = subprocess.Popen("grep -e "+rer+" buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
                         buffaged.close()
                         if thenn:
-                            print("http://webcache.googleusercontent.com/search?q=cache:"+lined.strip(), file=wude)
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty))
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty), file=wude)
                             return 6
                         else:
                             print("\rdid not find "+rer+" in cache", end='')
@@ -96,7 +97,8 @@ def thumbs(lotty):
                         thenn = subprocess.Popen("grep -e "+rer+" buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
                         buffaged.close()
                         if thenn:
-                            print("http://webcache.googleusercontent.com/search?q=cache:"+lined, file=wude)
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty))
+                            print("http://webcache.googleusercontent.com/search?q=cache:"+urllib.parse.quote_plus(lotty), file=wude)
                             return 6
                         else:
                             print("\rdid not find "+rer+" in cache", end='')
@@ -114,7 +116,7 @@ def thongs(litty):
     try:
         while True:
             #try:
-            thong = requests.get("https://cc.bingj.com/cache.aspx?q="+litty, allow_redirects=False, proxies=proxiess())
+            thong = requests.get("https://cc.bingj.com/cache.aspx?q="+litty.strip(), allow_redirects=False, proxies=proxiess())
             time.sleep(.1)
             thong.raise_for_status()
             #except requests.exceptions.ProxyError as err: 
@@ -123,19 +125,19 @@ def thongs(litty):
                 buffer = open('buffer.txt', 'w')
                 print(thong.text.strip(), file=buffer)
                 buffed = open('buffer.txt', 'r')
-                for liner in buffed:
-                    thung = subprocess.Popen("grep -e Apologies buffer.txt", stdout=subprocess.PIPE, shell=True).communicate()
-                    if thung:
-                        print("\rsaw apologies", end='')
-                        return 5
+                thung = subprocess.Popen("grep -e Apologies buffer.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                if thung:
+                    print("\rsaw apologies", end='')
+                    return 5
+                else:
+                    theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, shell=True).communicate() 
+                    if theng:
+                        print("https://cc.bingj.com/cache.aspx?q="+litty) 
+                        print("https://cc.bingj.com/cache.aspx?q="+litty, file=wude)
+                        return 6
                     else:
-                        theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, shell=True).communicate() 
-                        if theng:
-                            print("https://cc.bingj.com/cache.aspx?q="+liner, file=wude)
-                            return 6
-                        else:
-                            print("\rdid not find cache", end='')
-                            return 7    
+                        print("\rdid not find cache", end='')
+                        return 7    
             else:
                 print("\rtoo many requests sent to bing, please wait 5 minutes", end='')
                 return 8
