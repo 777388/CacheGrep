@@ -1,111 +1,171 @@
-import os
+import subprocess
 from multiprocessing import Process
 import sys
 import requests
 import time
 import threading as thread
+from proxy_requests.proxy_requests import ProxyRequests
+import random
+import urllib3
+import os
+from multiprocessing import Process
+from multiprocessing import Pool
 print("usage python3 natotopsecret.py searchterm domain")
 rer = sys.argv[1]
 rawr = sys.argv[2]
 wude = open('outputnts.txt', 'a')
+proxx = subprocess.Popen('curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt > proxy.txt', stdout=subprocess.PIPE, shell=True).communicate()
 
 #------------------------------------------------------------
+import random
+f = open("proxy.txt", "r")
+lines = f.readlines()
+def random_line(afile):     
+    line = random.choice(lines)
+    return line.strip()
+def proxiess():
+    while True:
+        ex = str(random_line(f))
+        proxies = {
+                'http': 'http://'+ex,
+            }
+        return proxies
 
 def thumbs(lotty):
-    while True: 
-        r = requests.head("http://webcache.googleusercontent.com/search?q=cache:"+lotty, allow_redirects=True)
-        buffet = open('buffet.txt', 'w')
-        print(r.url, buffet)
-        buffete = open('buffet.txt', 'r')
-        if os.popen("grep -e sorry buffet.txt").read():
-            print("redirected to captcha, avoiding", end="\r")
-            thumb = requests.get("http://webcache.googleusercontent.com/search?q=cache:"+lotty, allow_redirects=False)
-            if thumb.ok:
-                buffage = open('buffage.txt', 'w')
-                print(thumb.text.strip(), file=buffage)
-                buffaged = open('buffage.txt', 'r')
-                for lined in buffaged:
-                    thump = os.popen("grep -e 404 buffage.txt").read()
-                    if thump:
-                        print("saw 404", end='\r')
-                        return 5
-                    else:
-                        thenn = os.popen("grep -e "+rer+" buffage.txt").read()
-                        if thenn:
-                            print("http://webcache.googleusercontent.com/search?q=cache:"+lined, file=wude)
-                            return 6
+    try:
+        while True: 
+            #try:
+            r = requests.head("http://webcache.googleusercontent.com/search?q=cache:"+lotty, allow_redirects=True, proxies=proxiess())
+            time.sleep(.1)
+            r.raise_for_status()
+            #except requests.exceptions.ProxyError as err:
+                #print("Proxy Error", err)
+            buffet = open('buffet.txt', 'w')
+            print(r.url, file=buffet)
+            buffet.close()
+            buffete = open('buffet.txt', 'r')
+            if subprocess.Popen("grep -e sorry buffet.txt", stdout=subprocess.PIPE, shell=True).communicate():
+                print("\rredirected to captcha, avoiding", end="")
+                #try:
+                thumb = requests.get("http://webcache.googleusercontent.com/search?q=cache:"+lotty, allow_redirects=False, proxies=proxiess())
+                time.sleep(.1)
+                thumb.raise_for_status()
+                #except requests.exceptions.ProxyError as err:
+                #print("Proxy Error", err)
+                if thumb.ok:
+                    buffage = open('buffage.txt', 'w')
+                    print(thumb.text.strip(), file=buffage)
+                    buffage.close()
+                    buffaged = open('buffage.txt', 'r')
+                    for lined in buffaged:
+                        thump = subprocess.Popen("grep -e 404 buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                        if thump:
+                            print("\rsaw 404", end='')
+                            buffaged.close()
+                            return 5
                         else:
-                            print("did not find "+rer+" in cache", end='\r')
-                            return 7
-            else:
-                print("too many requests sent to Google, please wait 5 minutes", end='\r')
-                return 8
-        elif os.popen("grep -e google buffet.txt").read():
-            thumb = requests.get("http://webcache.googleusercontent.com/search?q=cache:"+lotty, allow_redirects=True)
-            if thumb.ok:
-                buffage = open('buffage.txt', 'w')
-                print(thumb.text.strip(), file=buffage)
-                buffaged = open('buffage.txt', 'r')
-                for lined in buffaged:
-                    thump = os.popen("grep -e 404 buffage.txt").read()
-                    if thump:
-                        print("saw 404", end='\r')
-                        return 5
-                    else:
-                        thenn = os.popen("grep -e "+rer+" buffage.txt").read()
-                        if thenn:
-                            print("http://webcache.googleusercontent.com/search?q=cache:"+lined, file=wude)
-                            return 6
-                        else:
-                            print("did not find "+rer+" in cache", end='\r')
-                            return 7
-            else:
-                print("too many requests sent to Google, please wait 5 minutes", end='\r')
-                return 8
-        else:
-            print("redirected to website", end="\r")
-            return 9
-def thongs(litty):
-    while True:
-        thong = requests.get("https://cc.bingj.com/cache.aspx?q="+litty, allow_redirects=False)
-        if thong.ok:
-            buffer = open('buffer.txt', 'w')
-            print(thong.text.strip(), file=buffer)
-            buffed = open('buffer.txt', 'r')
-            for liner in buffed:
-                thung = os.popen("grep -e Apologies buffer.txt").read()
-                if thung:
-                    print("saw apologies", end='\r')
-                    return 5
+                            thenn = subprocess.Popen("grep -e "+rer+" buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                            buffaged.close()
+                            if thenn:
+                                print("http://webcache.googleusercontent.com/search?q=cache:"+lined.strip(), file=wude)
+                                return 6
+                            else:
+                                print("\rdid not find "+rer+" in cache", end='')
+                                return 7
                 else:
-                    theng = os.popen("grep -e "+rer+" buffer.txt").read() 
-                    if theng:
-                        print("https://cc.bingj.com/cache.aspx?q="+liner, file=wude)
-                        return 6
+                    print("too many requests sent to Google, please wait 5 minutes", end='\r')
+                    return 8
+            elif subprocess.popen("grep -e google buffet.txt", stdout=subprocess.PIPE, shell=True).communicate():
+                buffete.close()
+                #try:
+                thumb = requests.get("http://webcache.googleusercontent.com/search?q=cache:"+lotty, allow_redirects=True, proxies=proxiess())
+                thumb.raise_for_status()
+                #except requests.exceptions.ProxyError as err:
+                    #print("Proxy Error", err)
+                if thumb.ok:
+                    buffage = open('buffage.txt', 'w')
+                    print(thumb.text.strip(), file=buffage)
+                    buffage.close()
+                    buffaged = open('buffage.txt', 'r')
+                    for lined in buffaged:
+                        thump = subprocess.Popen("grep -e 404 buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                        if thump:
+                            print("\rsaw 404", end='')
+                            buffaged.close()
+                            return 5
+                        else:
+                            thenn = subprocess.Popen("grep -e "+rer+" buffage.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                            buffaged.close()
+                            if thenn:
+                                print("http://webcache.googleusercontent.com/search?q=cache:"+lined, file=wude)
+                                return 6
+                            else:
+                                print("\rdid not find "+rer+" in cache", end='')
+                                return 7
+                else:
+                    print("too many requests sent to Google, please wait 5 minutes", end='\r')
+                    return 8
+            else:
+                print("\rredirected to website", end="")
+                return 9
+    except Exception as e:
+        print('\r'+e, end='')
+        return 10
+def thongs(litty):
+    try:
+        while True:
+            #try:
+            thong = requests.get("https://cc.bingj.com/cache.aspx?q="+litty, allow_redirects=False, proxies=proxiess())
+            time.sleep(.1)
+            thong.raise_for_status()
+            #except requests.exceptions.ProxyError as err: 
+                #print("proxy error", err)
+            if thong.ok:
+                buffer = open('buffer.txt', 'w')
+                print(thong.text.strip(), file=buffer)
+                buffed = open('buffer.txt', 'r')
+                for liner in buffed:
+                    thung = subprocess.Popen("grep -e Apologies buffer.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                    if thung:
+                        print("\rsaw apologies", end='')
+                        return 5
                     else:
-                        print("did not find cache", end='\r')
-                        return 7    
-        else:
-            print("too many requests sent to bing, please wait 5 minutes", end='\r')
-            return 8
+                        theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, shell=True).communicate() 
+                        if theng:
+                            print("https://cc.bingj.com/cache.aspx?q="+liner, file=wude)
+                            return 6
+                        else:
+                            print("\rdid not find cache", end='')
+                            return 7    
+            else:
+                print("\rtoo many requests sent to bing, please wait 5 minutes", end='')
+                return 8
+    except Exception as e:
+        print("\r"+e, end="")
+        return 9
 def taskse():
     thing = requests.get("http://web.archive.org/cdx/search/cdx?url="+rawr+"&output=text&fl=original&collapse=urlkey&matchType=prefix")
+    time.sleep(.1)
     if thing.ok:
         stri = "stri.txt"
         fin = open(stri, 'w')
         print(thing.text.strip(), file=fin)
         fil = open(stri, 'r')
-        for line in fil:
-            try:
-                thread.Thread(target=thumbs, args=(line,)).start()
-                thread.Thread(target=thongs, args=(line,)).start()
-            except:
-                print("cannot start new thread")
-            
+        pool = Pool()
+        try:
+            for lineee in fil:
+                for i in range(len(fil.readlines())):
+                    pool.apply_async(thongs, args=(lineee,))
+                    pool.apply_async(thumbs, args=(lineee,))
+            pool.close()
+            pool.join()
+        except:
+            print("cannot start new thread")
+            return 10
     else:
+        thing.raise_for_status()
         print("too many requests sent to web.archive.org, please wait 5 minutes")
         time.sleep(300)               
-    
 
 
 if __name__ == '__main__':
