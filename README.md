@@ -4,8 +4,12 @@ GREP caches of Waybackurls
 FULL IP RANGE USAGE
 python3 topsecret.py searchterm
 
+(!!!FASTER!!!) python3 UMBRA.py searchterm outputfilename  (!!!!Be sure to set!!! ulimit -Sn unlimited)
+
 DOMAIN NAME USAGE
 python3 natotopsecret.py searchterm domain
+
+(!!!FASTER!!!!) python3 MAJESTIC.py searchterm domain
 
 !grabs a proxy list from https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
 
