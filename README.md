@@ -26,3 +26,5 @@ python3 natotopsecret.py searchterm domain
 !!!!!FEEL FREE TO EDIT AND CHANGE AS YOU'D LIKE!!!!!!
 
 !!!!!!!!!!!!I DONT KNOW ABOUT LICENSING!!!!!!!!!!!!!!
+
+You may want to # out the wait timers, they seem to be going slower than .1 though they work for safety
