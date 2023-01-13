@@ -1,6 +1,9 @@
 # CacheGrep
 GREP caches of Waybackurls
 
+
+MYTHICAL works best, the others are sometimes a bit buggy having to deal with rate limiting and pool processing.
+
 FULL IP RANGE USAGE
 python3 topsecret.py searchterm
 
