@@ -36,7 +36,7 @@ def toes(titty):
     try:
         while True:
             cookies = {'c_user': '[cookie]', 'xs': '[cookie]'}
-            r = requests.get("https://developers.facebook.com/tools/debug/echo/?q=https://translate.google.com/translate?u="+unquote(titty), proxies=proxiess(), allow_redirects=False, cookies=cookies)
+            r = requests.get("https://developers.facebook.com/tools/debug/echo/?q=https://translate.google.com/translate?u="+unquote(titty.strip()), proxies=proxiess(), allow_redirects=True, cookies=cookies)
             if r.ok:
                 buffnet = open('buffnet.txt', 'w')
                 print(r.text, file=buffnet)
@@ -66,6 +66,7 @@ def toes(titty):
                         print("\rdid not find "+rer+" in "+r.url, end="")
                         return 7
             else:
+                print(r.url)
                 print("\rtoo many requests sent to facebook or google", end="")
                 return 8
     except Exception as e:
@@ -108,8 +109,8 @@ def taskse():
         fin = open(stri, 'w')
         print(thing.text.strip(), file=fin)
         fin.close()
-        
-        fil = open(stri, 'r')
+        theng = subprocess.Popen("grep -e pdf stri.txt > pdfs.txt", stdout=subprocess.PIPE, stderr = subprocess.PIPE, shell=True).communicate()
+        fil = open('pdfs.txt', 'r')
     try:
         processes =[Process(target=toes, args=(lineee,)) for lineee in fil]
         processess =[Process(target=thongs, args=(lineee,)) for lineee in fil]
