@@ -8,6 +8,7 @@ from proxy_requests.proxy_requests import ProxyRequests
 import random
 import urllib3
 import urllib
+from requests.utils import unquote
 import os
 from itertools import islice
 from multiprocessing import Process
@@ -16,7 +17,6 @@ print("usage python3 MYTHICAL.py searchterm domain")
 rer = sys.argv[1]
 rawr = sys.argv[2]
 yup = str(rawr)
-wude = open(yup+"output.txt", 'a')
 proxx = subprocess.Popen('curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt > proxy.txt', stdout=subprocess.PIPE, shell=True).communicate()
 import random
 f = open("proxy.txt", "r")
@@ -32,27 +32,36 @@ def proxiess():
             }
         return proxies
 def toes(titty):
+    wude = open(yup+"output.txt", 'a')
     try:
         while True:
-            cookies = {'c_user': '[enter cookie here]', 'xs': '[enter cookie here]'}
-            r = requests.get("https://developers.facebook.com/tools/debug/echo/?q=https://translate.google.com/translate?u="+titty, allow_redirects=False, cookies=cookies)
+            cookies = {'c_user': '[cookie]', 'xs': '[cookie]'}
+            r = requests.get("https://developers.facebook.com/tools/debug/echo/?q=https://translate.google.com/translate?u="+unquote(titty), proxies=proxiess(), allow_redirects=False, cookies=cookies)
             if r.ok:
                 buffnet = open('buffnet.txt', 'w')
                 print(r.text, file=buffnet)
                 r.raise_for_status()
                 buffnet.close()
                 buffen = open('buffnet.txt', 'r')
-                then = subprocess.Popen("grep -e \"Can\'t reach this website\" buffnet.txt", stdout=subprocess.PIPE, shell=True).communicate()
-                if then:
+                then = subprocess.Popen("grep reach buffnet.txt", stdout=subprocess.PIPE,  stderr = subprocess.PIPE, shell=True)
+                thenn = subprocess.Popen("grep 'error occured' buffnet.txt", stdout=subprocess.PIPE,  stderr = subprocess.PIPE, shell=True)
+                if then.stdout.readline().decode('utf-8'):
+                    print(then)
                     print("\rFile "+str(r.url.rstrip())+" not cached", end="")
                     buffen.close()
                     return 5
+                elif thenn.stdout.readline().decode('utf-8'): 
+                    print("\rError on facebook", end="")
+                    return 6
+                    
                 else:
-                    thun = subprocess.Popen("grep -e "+rer+" buffnet.txt", stdout=subprocess.PIPE, shell=True).communicate()
+                    thun = subprocess.Popen("grep -e "+rer+" buffnet.txt", stdout=subprocess.PIPE, stderr = subprocess.PIPE, shell=True)
                     buffen.close()
-                    if thun:
+                    if thun.stdout.readline().decode('utf-8'):
                         print(r.url+"")
                         print(r.url, file=wude)
+                        wude.close()
+                        return 4
                     else:
                         print("\rdid not find "+rer+" in "+r.url, end="")
                         return 7
@@ -63,6 +72,7 @@ def toes(titty):
         print("\r"+e, end="")
 
 def thongs(litty):
+    wude = open(yup+"output.txt", 'a')
     try:
         while True:
             thong = requests.get("https://cc.bingj.com/cache.aspx?q="+litty.strip(), allow_redirects=False, proxies=proxiess())
@@ -71,15 +81,16 @@ def thongs(litty):
                 buffer = open('buffer.txt', 'w')
                 print(thong.text.strip(), file=buffer)
                 buffer.close()
-                thung = subprocess.Popen("grep -e Apologies buffer.txt", stdout=subprocess.PIPE, shell=True).communicate()
-                if thung:
-                    print("\rsaw apologies, cache in "+litty.strip()+" not found", end='')
+                thung = subprocess.Popen("grep -e Apologies buffer.txt", stdout=subprocess.PIPE, stderr = subprocess.PIPE, shell=True)
+                if thung.stdout.readline().decode('utf-8'):
+                    print("\rsaw apologies, cache in "+unquote(litty.strip())+" not found", end='')
                     return 5
                 else:
-                    theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, shell=True).communicate() 
-                    if theng:
+                    theng = subprocess.Popen("grep -e "+rer+" buffer.txt", stdout=subprocess.PIPE, stderr = subprocess.PIPE, shell=True) 
+                    if theng.stdout.readline().decode('utf-8'):
                         print("https://cc.bingj.com/cache.aspx?q="+litty) 
                         print("https://cc.bingj.com/cache.aspx?q="+litty, file=wude)
+                        wude.close()
                         return 6
                     else:
                         print("\rdid not find "+rer+" in cache", end='')
@@ -96,6 +107,8 @@ def taskse():
         stri = "stri.txt"
         fin = open(stri, 'w')
         print(thing.text.strip(), file=fin)
+        fin.close()
+        
         fil = open(stri, 'r')
     try:
         processes =[Process(target=toes, args=(lineee,)) for lineee in fil]
